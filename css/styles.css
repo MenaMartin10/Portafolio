@@ -2,7 +2,7 @@
 
 :root {
     --primary-color: #171b21;
-    --secondary-color: rgba(0, 123, 255, 0.5);
+    --secondary-color: #5d5d52;
     --completed-color: rgba(0, 128, 0, 0.5);
     --incomplete-color: rgba(255, 0, 0, 0.5);
     --text-color: #ffffff;
@@ -37,7 +37,7 @@ header {
     padding: 20px;
     background: #2c2c2c;
     transition: all 0.5s ease;
-    border-bottom: 1px solid #5d5d52;
+    border-bottom: 1px solid #5d5d526b;
 }
 
 header.scrolled .logo {
@@ -313,14 +313,18 @@ footer .by {
 
 .text-container {
     flex: 1;
-    margin-right: 20px;
+    padding: 30px;
     overflow: hidden;
     text-align: center;
 }
 
+.text-container h3{
+    color: #5d5d52;
+}
+
 .text-container a {
-    padding: 10px 20px;
-    margin: 0 10px;
+    padding: 20px;
+    margin: 20px;
     background-color: #5d5d52;
     color: #ffffff;
     text-decoration: none;
@@ -408,6 +412,14 @@ footer .by {
     margin-bottom: 20px;
     filter: drop-shadow(20px 20px 40px #5d5d52);
     padding: 100px;
+}
+
+#firma{
+    width: 100px;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    opacity: 0.2;
 }
 
 .mitexto {
@@ -502,12 +514,6 @@ footer .by {
     width: 100%;
     height: 100%;
     border-radius: 50%;
-    background: conic-gradient(
-        rgba(0, 123, 255, 0.5) 0%,
-        rgba(0, 123, 255, 0.5) 0%,
-        rgba(239, 233, 233, 0.25) 0%,
-        rgba(239, 233, 233, 0.25) 100%
-    );
     border: 1px solid rgba(255, 255, 255, 0.2);
     display: flex;
     align-items: center;
@@ -515,14 +521,15 @@ footer .by {
     font-size: 10px;
     color: var(--primary-color, #171b21);
     transition: 0.5s;
+    padding: 5px;
 }
 
 .circle.completed {
-    background: rgba(0, 128, 0, 0.5);
+    background: rgba(69, 90, 69, 0.5) !important; 
 }
 
 .circle.incomplete {
-    background: rgba(255, 0, 0, 0.5);
+    background: rgba(105, 56, 56, 0.5) !important;
 }
 
 .circle:after {
@@ -618,6 +625,10 @@ footer .by {
     text-align: center;
 }
 
+#leng{
+    color: #ffffff;
+}
+
 .cards {
     display: flex;
     justify-content: space-around;
@@ -684,6 +695,22 @@ footer .by {
     line-height: 30px;
     color: white;
 }
+
+.portfolio {
+    max-width: 70%;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 0 auto 20px auto; 
+    text-align: center;
+    box-shadow: 0px 0px 20px 0px rgb(0 0 0 / 33%);
+    background: #2c2c2c; 
+    border-bottom: 1px solid #5d5d526b;
+}
+
+.w-10{
+    width: 70% !important;
+}
+
 
 @media (min-width: 300px) and (max-width: 700px) {
     header{
@@ -763,5 +790,25 @@ footer .by {
    .iconprog{
     width: 100%;
    }
-}
 
+   #firma{
+    width: 70px;
+   }
+
+   .about p{
+    font-size: 11px;
+   }
+
+   .text-container{
+    margin: 0;
+   }
+
+   .text-container h3{
+    font-size: 15px;
+   }
+
+   .text-container a{
+    font-size: 11px;
+    padding: 5px;
+   }
+}
