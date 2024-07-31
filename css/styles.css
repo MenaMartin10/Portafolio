@@ -811,4 +811,13 @@ footer .by {
     font-size: 11px;
     padding: 5px;
    }
+
+   footer .social {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+   footer .social a {
+    font-size: 30px;
+}
 }
