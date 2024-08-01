@@ -101,9 +101,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }, 20);
     });
-});
 
-document.addEventListener('DOMContentLoaded', function() {
     const dots = document.querySelectorAll('.dot');
     const sections = document.querySelectorAll('section');
 
@@ -133,5 +131,18 @@ document.addEventListener('DOMContentLoaded', function() {
                 block: 'start'
             });
         });
+    });
+
+    const fixedNav = document.getElementById('fixedNav');
+    const showNavOnScroll = 200; // 
+
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > showNavOnScroll) {
+            fixedNav.classList.add('blur-in');
+            fixedNav.classList.remove('blur-out');
+        } else {
+            fixedNav.classList.add('blur-out');
+            fixedNav.classList.remove('blur-in');
+        }
     });
 });

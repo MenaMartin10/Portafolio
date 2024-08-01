@@ -1,3 +1,4 @@
+/* styles.css */
 @import url('https://fonts.googleapis.com/css2?family=Girassol&family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Rubik:ital,wght@0,300..900;1,300..900&family=Sono:wght@200..800&family=Unica+One&display=swap');
 
 :root {
@@ -89,7 +90,6 @@ header.scrolled nav {
 .dot.active {
     background-color: white;
 }
-
 
 nav ul {
     list-style: none;
@@ -232,7 +232,7 @@ nav ul li a:hover {
     background-color: #5d5d528a;
 }
 
-#about{
+#about {
     text-align: center;
     margin: 50px 0px 50px 0px;
 }
@@ -254,7 +254,7 @@ nav ul li a:hover {
     margin-top: 20px;
 }
 
-.container{
+.container {
     min-height: 100vh;
     align-content: center;
 }
@@ -318,7 +318,7 @@ footer .by {
     text-align: center;
 }
 
-.text-container h3{
+.text-container h3 {
     color: #5d5d52;
 }
 
@@ -337,6 +337,10 @@ footer .by {
     background-color: #5d5d528a;
 }
 
+.text-container p {
+    margin: 50px;
+}
+
 .carousel-container {
     flex: 1;
 }
@@ -345,8 +349,27 @@ footer .by {
     border-radius: 100%;
 }
 
+.carousel-item {
+    overflow: hidden;
+}
+
+#pelota {
+    animation: spin 15s linear infinite;
+    overflow: hidden;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
 .blur-in {
-    animation: blur-in 0.8s linear both;
+    animation: blur-in 0.3s linear both;
 }
 
 @keyframes blur-in {
@@ -394,7 +417,6 @@ footer .by {
     }
 }
 
-
 .perfil {
     display: flex;
     justify-content: space-around;
@@ -414,7 +436,7 @@ footer .by {
     padding: 100px;
 }
 
-#firma{
+#firma {
     width: 100px;
     position: fixed;
     bottom: 10px;
@@ -431,11 +453,12 @@ footer .by {
     box-shadow: 0px 5px 20px 0px rgb(0 0 0 / 33%);
 }
 
-.mitexto p{
+.mitexto p {
     font-size: 1.2em;
 }
 
-.right-column, .left-column {
+.right-column,
+.left-column {
     flex: 1;
     padding: 20px;
 }
@@ -457,7 +480,7 @@ footer .by {
     box-shadow: 0px 0px 20px 0px rgb(0 0 0 / 33%);
 }
 
-.left-column h2{
+.left-column h2 {
     color: #5d5d52;
 }
 
@@ -466,12 +489,14 @@ footer .by {
     margin-bottom: 20px;
 }
 
-.right-column ul, .left-column ul {
+.right-column ul,
+.left-column ul {
     list-style-type: none;
     padding: 0;
 }
 
-.right-column li, .left-column li {
+.right-column li,
+.left-column li {
     margin-bottom: 10px;
 }
 
@@ -525,7 +550,7 @@ footer .by {
 }
 
 .circle.completed {
-    background: rgba(69, 90, 69, 0.5) !important; 
+    background: rgba(69, 90, 69, 0.5) !important;
 }
 
 .circle.incomplete {
@@ -539,12 +564,12 @@ footer .by {
     color: var(--text-color, #ffffff);
 }
 
-#contactme{
+#contactme {
     text-decoration: none;
     color: #ffffff80;
 }
 
-#contactme:hover{
+#contactme:hover {
     color: #ffffffaf;
 }
 
@@ -601,7 +626,7 @@ footer .by {
     box-shadow: 0px 0px 20px 0px rgb(0 0 0 / 33%);
 }
 
-.studio h4{
+.studio h4 {
     color: #5d5d52;
 }
 
@@ -625,7 +650,7 @@ footer .by {
     text-align: center;
 }
 
-#leng{
+#leng {
     color: #ffffff;
 }
 
@@ -700,25 +725,65 @@ footer .by {
     max-width: 70%;
     border-radius: 10px;
     padding: 20px;
-    margin: 0 auto 20px auto; 
+    margin: 0 auto 20px auto;
     text-align: center;
     box-shadow: 0px 0px 20px 0px rgb(0 0 0 / 33%);
-    background: #2c2c2c; 
+    background: #2c2c2c;
     border-bottom: 1px solid #5d5d526b;
 }
 
-.w-10{
+.w-10 {
     width: 70% !important;
 }
 
+.fixed-nav {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #5d5d5298;
+    border-radius: 30px;
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.623);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 80%;
+    max-width: 600px;
+    padding: 10px;
+    z-index: 1000;
+    display: none; 
+    opacity: 0;
+    transition: opacity 0.4s, transform 0.4s;
+}
+
+.fixed-nav.blur-in {
+    display: flex;
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+.fixed-nav.blur-out {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+}
+
+.fixed-nav a {
+    color: #7c7c7c;
+    text-decoration: none;
+    font-size: 24px;
+}
+
+.fixed-nav a:hover {
+    color: #ffffff;
+}
 
 @media (min-width: 300px) and (max-width: 700px) {
-    header{
+    header {
         display: block;
         text-align: center;
     }
 
-    nav ul li a{
+    nav ul li a {
         font-size: 10px;
     }
 
@@ -726,38 +791,38 @@ footer .by {
         display: block;
     }
 
-    .texto-perfil{
+    .texto-perfil {
         margin: 100px 0px 0px 0px;
         font-size: 11px;
     }
 
-    .mini-perfil{
+    .mini-perfil {
         margin: 100px 0px 0px 0px;
         padding: 100px 30px 0px 30px;
     }
 
-    .mini-perfil .profile-pic{
+    .mini-perfil .profile-pic {
         padding: 0;
         margin: 0px 0px 50px 0px;
         width: 330px;
         height: 380px;
-    } 
-    
+    }
+
     .perfil {
-        display: flex; 
+        display: flex;
         flex-direction: column-reverse;
         align-items: center;
         padding: 0px 10px 0px 10px;
     }
 
-    .perfil img{
+    .perfil img {
         padding: 0;
         margin: 50px 50px 80px 50px;
         width: 250px;
         height: 250px;
     }
 
-    .mitexto{
+    .mitexto {
         margin: 0;
         font-size: 10px;
     }
@@ -767,57 +832,61 @@ footer .by {
         font-size: 10px;
     }
 
-    .conocimientos, .left-column,  .studio{
+    .conocimientos,
+    .left-column,
+    .studio {
         margin: 20px 0px 20px 0px;
     }
 
-    .studio{
-        padding:  20px 20px 0px 20px;
+    .studio {
+        padding: 20px 20px 0px 20px;
         margin: 30px 10px 30px 10px;
     }
 
-   .soperativo img{
-    width: 100px;
-   }
+    .soperativo img {
+        width: 100px;
+    }
 
-   .card{
-    padding: 20px;
-    margin: 10px;
-    width: 100%;
-    border: none;
-   }
+    .card {
+        padding: 20px;
+        margin: 10px;
+        width: 100%;
+        border: none;
+    }
 
-   .iconprog{
-    width: 100%;
-   }
+    .iconprog {
+        width: 100%;
+    }
 
-   #firma{
-    width: 70px;
-   }
+    #firma {
+        width: 70px;
+    }
 
-   .about p{
-    font-size: 11px;
-   }
+    .about p {
+        font-size: 11px;
+    }
 
-   .text-container{
-    margin: 0;
-   }
+    .text-container {
+        margin: 0;
+    }
 
-   .text-container h3{
-    font-size: 15px;
-   }
+    .text-container h3 {
+        font-size: 15px;
+    }
 
-   .text-container a{
-    font-size: 11px;
-    padding: 5px;
-   }
+    .text-container a {
+        font-size: 11px;
+        padding: 5px;
+    }
 
-   footer .social {
-    display: flex;
-    justify-content: center;
-    gap: 5px;
+    footer .social {
+        display: flex;
+        justify-content: center;
+        gap: 5px;
+    }
+
+    footer .social a {
+        font-size: 30px;
+    }
 }
-   footer .social a {
-    font-size: 30px;
-}
-}
+
