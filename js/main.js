@@ -1,21 +1,39 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const header = document.querySelector('header');
+    const fixedNav = document.getElementById('fixedNav');
+    const showNavOnScroll = 200; // Show fixed nav after scrolling 200px
 
     window.addEventListener('scroll', function() {
-        if (window.scrollY > 100) {
-            header.classList.add('scrolled');
+        const scrolled = window.scrollY;
+        const windowHeight = window.innerHeight;
+        const fullHeight = document.body.scrollHeight;
+
+        // Show or hide fixed navigation based on scroll position
+        if (scrolled > showNavOnScroll && (fullHeight - windowHeight - scrolled) > 0) {
+            fixedNav.classList.add('blur-in');
+            fixedNav.classList.remove('blur-out');
         } else {
-            header.classList.remove('scrolled');
+            fixedNav.classList.add('blur-out');
+            fixedNav.classList.remove('blur-in');
         }
     });
 
-    document.querySelectorAll('nav a').forEach(anchor => {
+    // Smooth scroll for navigation links and add active class
+    document.querySelectorAll('.fixed-nav a, .dot-navigation a').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
+            const targetId = this.getAttribute('href');
+            document.querySelector(targetId).scrollIntoView({
                 behavior: 'smooth',
-                block: 'start' 
+                block: 'start'
             });
+
+            // Update fixed-nav links
+            document.querySelectorAll('.fixed-nav a').forEach(link => link.classList.remove('active'));
+            document.querySelector(`.fixed-nav a[href="${targetId}"]`).classList.add('active');
+
+            // Update dot-navigation links
+            document.querySelectorAll('.dot-navigation a').forEach(link => link.classList.remove('active'));
+            document.querySelector(`.dot-navigation a[href="${targetId}"]`).classList.add('active');
         });
     });
 
@@ -121,6 +139,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 dot.classList.add('active');
             }
         });
+
+        document.querySelectorAll('.fixed-nav a').forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${current}`) {
+                link.classList.add('active');
+            }
+        });
     });
 
     dots.forEach(dot => {
@@ -130,19 +155,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 behavior: 'smooth',
                 block: 'start'
             });
+
+            // Update fixed-nav links
+            document.querySelectorAll('.fixed-nav a').forEach(link => link.classList.remove('active'));
+            document.querySelector(`.fixed-nav a[href="${this.getAttribute('href')}"]`).classList.add('active');
+
+            // Update dot-navigation links
+            dots.forEach(link => link.classList.remove('active'));
+            this.classList.add('active');
         });
-    });
-
-    const fixedNav = document.getElementById('fixedNav');
-    const showNavOnScroll = 200; // 
-
-    window.addEventListener('scroll', function() {
-        if (window.scrollY > showNavOnScroll) {
-            fixedNav.classList.add('blur-in');
-            fixedNav.classList.remove('blur-out');
-        } else {
-            fixedNav.classList.add('blur-out');
-            fixedNav.classList.remove('blur-in');
-        }
     });
 });
