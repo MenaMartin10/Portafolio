@@ -165,4 +165,40 @@ document.addEventListener('DOMContentLoaded', function() {
             this.classList.add('active');
         });
     });
+
+    const modal = document.getElementById('certModal');
+    const modalImg = document.getElementById('modalImage');
+    const captionText = document.getElementById('caption');
+    const closeModal = document.getElementsByClassName('close')[0];
+
+
+    document.querySelectorAll('.cert-link').forEach(link => {
+        link.addEventListener('click', function(event) {
+            event.preventDefault();
+            modal.style.display = 'block';
+            modalImg.src = this.getAttribute('data-cert');
+            fixedNav.style.display = 'none'; 
+        });
+    });
+
+    closeModal.addEventListener('click', function() {
+        modal.style.display = 'none';
+        fixedNav.style.display = 'flex'; // Show fixedNav
+    });
+
+    window.addEventListener('click', function(event) {
+        if (event.target == modal) {
+            modal.style.display = 'none';
+            fixedNav.style.display = 'flex'; // Show fixedNav
+        }
+    });
+
+    // Zoom functionality
+    modalImg.addEventListener('click', function() {
+        if (modalImg.classList.contains('zoom')) {
+            modalImg.classList.remove('zoom');
+        } else {
+            modalImg.classList.add('zoom');
+        }
+    });
 });
