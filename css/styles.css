@@ -218,19 +218,47 @@ nav ul li a:hover {
     margin-top: 20px;
 }
 
-.btn {
+@-webkit-keyframes hvr-pulse-shrink {
+    to {
+      -webkit-transform: scale(0.9);
+      transform: scale(0.9);
+    }
+  }
+  
+  @keyframes hvr-pulse-shrink {
+    to {
+      -webkit-transform: scale(0.9);
+      transform: scale(0.9);
+    }
+  }
+  
+  .btn {
     padding: 10px 20px;
-    margin: 0 10px;
+    margin: 20px;
     background-color: #5d5d52;
     color: #ffffff;
     text-decoration: none;
     font-size: 1em;
     border-radius: 5px;
     transition: 0.3s;
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-property: transform, background-color, border;
+    transition-property: transform, background-color, border;
+    -webkit-transition-timing-function: ease-out;
+    transition-timing-function: ease-out;
 }
 
-.btn:hover {
-    background-color: #5d5d528a;
+.btn:hover, .btn:focus, .btn:active {
+    background-color: #5d5d5200;
+    border: 1px solid #5d5d52;
+    -webkit-transform: translateY(-8px);
+    transform: translateY(-8px);
 }
 
 #about {
@@ -566,7 +594,7 @@ footer .by {
 }
 
 #contact {
-    min-height: 70vh;
+    min-height: 100vh;
     align-content: center;
     text-align: center;
 }
@@ -627,15 +655,14 @@ footer .by {
 }
 
 .soperativo {
-    display: flex;
-    justify-content: space-between;
+    display: block;
     text-align: center;
     align-items: center;
     margin: 100px;
 }
 
 .soperativo img {
-    width: 300px;
+    width: 600px;
     height: auto;
     margin: 20px;
     padding: 10px;
@@ -649,6 +676,7 @@ footer .by {
 }
 
 .soperativo a{
+
     color: #ffffffbe;
     border-radius: 5px;
     overflow: hidden;
@@ -809,21 +837,12 @@ footer .by {
 }
 
 .custom-carousel-control {
-    background-color: #5d5d52;
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    border-radius: 50%;
     width: 48px;
     height: 48px;
     display: flex;
     justify-content: center;
     align-self: center;
     transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.custom-carousel-control:hover {
-    background-color: #3a3a3a;
-    width: 50px;
-    height: 50px;
 }
 
 .custom-carousel-control svg {
@@ -1137,5 +1156,3 @@ footer .by {
         max-width: 92%;
     }
 }
-
-
