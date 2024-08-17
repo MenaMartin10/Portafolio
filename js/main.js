@@ -1,13 +1,13 @@
 document.addEventListener('DOMContentLoaded', function() {
     const fixedNav = document.getElementById('fixedNav');
-    const showNavOnScroll = 200; // Show fixed nav after scrolling 200px
+    const showNavOnScroll = 200; 
 
     window.addEventListener('scroll', function() {
         const scrolled = window.scrollY;
         const windowHeight = window.innerHeight;
         const fullHeight = document.body.scrollHeight;
 
-        // Show or hide fixed navigation based on scroll position
+        
         if (scrolled > showNavOnScroll && (fullHeight - windowHeight - scrolled) > 0) {
             fixedNav.classList.add('blur-in');
             fixedNav.classList.remove('blur-out');
@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Smooth scroll for navigation links and add active class
+    
     document.querySelectorAll('.fixed-nav a, .dot-navigation a').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
@@ -27,11 +27,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 block: 'start'
             });
 
-            // Update fixed-nav links
+            
             document.querySelectorAll('.fixed-nav a').forEach(link => link.classList.remove('active'));
             document.querySelector(`.fixed-nav a[href="${targetId}"]`).classList.add('active');
 
-            // Update dot-navigation links
+            
             document.querySelectorAll('.dot-navigation a').forEach(link => link.classList.remove('active'));
             document.querySelector(`.dot-navigation a[href="${targetId}"]`).classList.add('active');
         });
@@ -156,11 +156,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 block: 'start'
             });
 
-            // Update fixed-nav links
+           
             document.querySelectorAll('.fixed-nav a').forEach(link => link.classList.remove('active'));
             document.querySelector(`.fixed-nav a[href="${this.getAttribute('href')}"]`).classList.add('active');
 
-            // Update dot-navigation links
+            
             dots.forEach(link => link.classList.remove('active'));
             this.classList.add('active');
         });
@@ -193,12 +193,38 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Zoom functionality
+
     modalImg.addEventListener('click', function() {
         if (modalImg.classList.contains('zoom')) {
             modalImg.classList.remove('zoom');
         } else {
             modalImg.classList.add('zoom');
         }
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    const body = document.body;
+    const darkModeIcon = document.getElementById('darkModeIcon');
+    const lightModeIcon = document.getElementById('lightModeIcon');
+
+    if (localStorage.getItem('theme') === 'dark') {
+        body.classList.add('dark-mode');
+        darkModeIcon.style.display = 'none';
+        lightModeIcon.style.display = 'inline-block';
+    }
+
+    darkModeIcon.addEventListener('click', function() {
+        body.classList.add('dark-mode');
+        darkModeIcon.style.display = 'none';
+        lightModeIcon.style.display = 'inline-block';
+        localStorage.setItem('theme', 'dark');
+    });
+
+    lightModeIcon.addEventListener('click', function() {
+        body.classList.remove('dark-mode');
+        darkModeIcon.style.display = 'inline-block';
+        lightModeIcon.style.display = 'none';
+        localStorage.setItem('theme', 'light');
     });
 });
