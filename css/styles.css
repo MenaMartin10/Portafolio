@@ -572,11 +572,11 @@ footer .by {
 }
 
 .circle.completed {
-    background: rgba(69, 90, 69, 0.5) !important;
+    background: rgba(50, 54, 50, 0.541) !important;
 }
 
 .circle.incomplete {
-    background: rgba(105, 56, 56, 0.5) !important;
+    background: rgba(51, 40, 40, 0.541) !important;
 }
 
 .circle:after {
@@ -1033,6 +1033,10 @@ body.dark-mode {
     color: #5d5d52;
 }
 
+.dark-mode .circle{
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
 @media (min-width: 300px) and (max-width: 700px) {
     header {
         display: block;
@@ -1210,6 +1214,20 @@ body.dark-mode {
     .portfolio{
         max-width: 100%;
         box-shadow: none;
+    }
+
+    .right-column span#empresa{
+        font-size: 7px;
+    }
+
+    .circle-container {
+        left: 30px;
+        align-content: center;
+    }
+
+    .circle{
+        width: 50px;
+        height: 50px;
     }
 
 }
