@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const windowHeight = window.innerHeight;
         const fullHeight = document.body.scrollHeight;
 
-        
         if (scrolled > showNavOnScroll && (fullHeight - windowHeight - scrolled) > 0) {
             fixedNav.classList.add('blur-in');
             fixedNav.classList.remove('blur-out');
@@ -17,7 +16,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    
     document.querySelectorAll('.fixed-nav a, .dot-navigation a').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
@@ -27,47 +25,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 block: 'start'
             });
 
-            
             document.querySelectorAll('.fixed-nav a').forEach(link => link.classList.remove('active'));
             document.querySelector(`.fixed-nav a[href="${targetId}"]`).classList.add('active');
 
-            
             document.querySelectorAll('.dot-navigation a').forEach(link => link.classList.remove('active'));
             document.querySelector(`.dot-navigation a[href="${targetId}"]`).classList.add('active');
         });
-    });
-
-    var carouselElement = document.getElementById('carouselExample');
-    var dynamicTextContainer = document.getElementById('dynamicText');
-
-    carouselElement.addEventListener('slide.bs.carousel', function(e) {
-        var activeItem = e.relatedTarget;
-        var activeImg = activeItem.querySelector('img');
-        var newText = activeItem.getAttribute('data-text');
-
-        var prevImg = carouselElement.querySelector('.carousel-item.active img');
-        if (prevImg) {
-            prevImg.classList.remove('blur-in');
-            prevImg.classList.add('blur-out');
-        }
-
-        dynamicTextContainer.classList.remove('blur-in');
-        dynamicTextContainer.classList.add('blur-out');
-
-        dynamicTextContainer.addEventListener('animationend', function handler() {
-            dynamicTextContainer.removeEventListener('animationend', handler);
-            dynamicTextContainer.innerHTML = newText;
-            dynamicTextContainer.classList.remove('blur-out');
-        }, { once: true });
-
-        activeImg.addEventListener('animationend', function handler() {
-            activeImg.removeEventListener('animationend', handler);
-            dynamicTextContainer.classList.add('blur-in');
-        }, { once: true });
-
-        activeImg.classList.remove('blur-out');
-        void activeImg.offsetWidth;
-        activeImg.classList.add('blur-in');
     });
 
     var activeItem = document.querySelector('#carouselExample .carousel-item.active');
@@ -156,11 +119,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 block: 'start'
             });
 
-           
             document.querySelectorAll('.fixed-nav a').forEach(link => link.classList.remove('active'));
             document.querySelector(`.fixed-nav a[href="${this.getAttribute('href')}"]`).classList.add('active');
 
-            
             dots.forEach(link => link.classList.remove('active'));
             this.classList.add('active');
         });
@@ -168,9 +129,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const modal = document.getElementById('certModal');
     const modalImg = document.getElementById('modalImage');
-    const captionText = document.getElementById('caption');
     const closeModal = document.getElementsByClassName('close')[0];
-
 
     document.querySelectorAll('.cert-link').forEach(link => {
         link.addEventListener('click', function(event) {
@@ -193,7 +152,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-
     modalImg.addEventListener('click', function() {
         if (modalImg.classList.contains('zoom')) {
             modalImg.classList.remove('zoom');
@@ -201,9 +159,37 @@ document.addEventListener('DOMContentLoaded', function() {
             modalImg.classList.add('zoom');
         }
     });
-});
 
-document.addEventListener('DOMContentLoaded', function() {
+    // Touch gesture detection for the 3D carousel, active only on small screens
+    if (window.matchMedia("(min-width: 300px) and (max-width: 700px)").matches) {
+        const carousel = document.getElementById('carousel');
+        let startX;
+
+        carousel.addEventListener('touchstart', function(e) {
+            startX = e.touches[0].clientX;  // Record where the touch started
+        });
+
+        carousel.addEventListener('touchmove', function(e) {
+            if (!startX) return;
+
+            let moveX = e.touches[0].clientX;  // Track the touch movement
+            let diffX = startX - moveX;
+
+            // Check the direction of swipe
+            if (diffX > 0) {
+                // Swipe left - Rotate right
+                carousel.style.transform = `rotateY(-${Math.abs(diffX)}deg)`;
+            } else if (diffX < 0) {
+                // Swipe right - Rotate left
+                carousel.style.transform = `rotateY(${Math.abs(diffX)}deg)`;
+            }
+        });
+
+        carousel.addEventListener('touchend', function(e) {
+            startX = null;  // Reset the touch start position
+        });
+    }
+
     const body = document.body;
     const darkModeIcon = document.getElementById('darkModeIcon');
     const lightModeIcon = document.getElementById('lightModeIcon');
